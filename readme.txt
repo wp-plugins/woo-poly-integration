@@ -1,4 +1,4 @@
-=== Hyyan WooCommerce Polylang Integration===
+﻿=== Hyyan WooCommerce Polylang Integration===
 Contributors: hyyan
 Tags: cms, commerce, e-commerce, e-shop, ecommerce, multilingual, products, shop, woocommerce, polylang ,bilingual, international, language, localization, multilanguage, multilingual, translate, translation
 Requires at least: 3.8
@@ -95,7 +95,7 @@ Just make sure to setup your permalinks , and every thing will be fine , I promi
 
 == Changelog ==
 
-=0.15=
+= 0.15 =
 * Extended meta list to include _visibility
 
 = 0.14 =
