@@ -23,7 +23,7 @@ interface HooksInterface
      * The filter is fired before product meta array is passed to polylang
      * to handle sync.
      *
-     * The filter recive one parameter which is the meta array
+     * The filter receive one parameter which is the meta array
      *
      * for instance :
      * <code>
@@ -36,6 +36,54 @@ interface HooksInterface
      * </code>
      */
     const PRODUCT_META_SYNC_FILTER = 'woo-poly.product.metaSync';
+
+    /**
+     * Product Sync Category Custom Fields Action
+     *
+     * The action will be fired when the plugin attemps to sync default product
+     * category custom fields (dispplay_type,thumbinal_id)
+     *
+     * The action can be used to update extra custom fields if they exist
+     *
+     * for instance :
+     * <code>
+     *
+     * add_action(
+     *      HooksInterface::PRODUCT_SYNC_CATEGORY_CUSTOM_FIELDS,
+     *      function (\Hyyan\WPI\Taxonomies $tax , $termID) {
+     *
+     *        if (isset($_POST['my_field_name'])) {
+     *            $tax->doSyncProductCatCustomFields(
+     *                      $termID
+     *                     , 'my_field_name'
+     *                     , esc_attr($_POST['my_field_name'])
+     *             );
+     *        }
+     *
+     *      }
+     * );
+     * </code>
+     */
+    const PRODUCT_SYNC_CATEGORY_CUSTOM_FIELDS = 'woo-poly.product.syncCategoryCustomFields';
+
+    /**
+     * Product Copy Category Custom Fields
+     *
+     * The action is fired when new translatin is being added for product category
+     *
+     * The action can be used to copy catefory custom fields from give category
+     * ID to its transation
+     *
+     * for instance :
+     *
+     * <code>
+     * add_action(HooksInterface::PRODUCT_COPY_CATEGORY_CUSTOM_FIELDS,function ($categoryID) {
+     *
+     *        // do whatever you want here
+     * });
+     * </code>
+     */
+    const PRODUCT_COPY_CATEGORY_CUSTOM_FIELDS = 'woo-poly.product.copyCategoryCustomFields';
 
     /**
      * Pages List
@@ -52,6 +100,7 @@ interface HooksInterface
      *
      *      return $pages;
      * });
+     * </code>
      */
     const PAGES_LIST = 'woo-poly.pages.list';
 
