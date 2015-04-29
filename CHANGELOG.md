@@ -1,3 +1,16 @@
+###0.17.2
+
+* Fixed issue#2 (https://github.com/hyyan/woo-poly-integration/issues/2)
+
+###0.17.1
+
+* Removed wrong php used statement
+
+###0.17
+
+* Fixed (Polylang language switcher is disabled even if there is no variable products)
+* Added the ability to sync product category custom fields
+
 ###0.16
 
 * Added support for product gallery translation
