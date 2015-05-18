@@ -3,7 +3,7 @@ Contributors: hyyan
 Tags: cms, commerce, e-commerce, e-shop, ecommerce, multilingual, products, shop, woocommerce, polylang ,bilingual, international, language, localization, multilanguage, multilingual, translate, translation
 Requires at least: 3.8
 Tested up to: 4.2
-Stable tag: 0.19
+Stable tag: 0.20
 License: MIT
 License URI: https://github.com/hyyan/woo-poly-integration/blob/master/LICENSE
 
@@ -12,9 +12,9 @@ Integrates Woocommerce With Polylang
 == Description ==
 
 This plugin makes it possible to run multilingual e-commerce sites using
-WooCommerce and Polylang . It makes products and store pages translatable, lets 
-visitors switch languages and order products in their language. and all that in 
-same interface you love.
+WooCommerce and Polylang.It makes products and store pages translatable, lets 
+visitors switch languages and order products in their language. and all that frome 
+the same interface you love.
 
 = Features  =
 
@@ -33,23 +33,21 @@ same interface you love.
 - [√] Emails
 - [√] Reports
   - [√] Filter by language
-  - [ ] Combine reports for all languages
+  - [√] Combine reports for all languages
 
 
 = What you need to know about this plugin =
 
-1. The plugin stills in development , so you might find bugs
-2. The plugin doesn't implement full integration yet (Working on it)
-3. The plugin support variable products , but using them will `disallow you to 
+1. The plugin support variable products , but using them will `disallow you to 
   change the default language` , because of the way the plugin implements this
   support. So you have to make sure to choose the default language before start
   adding new variable products.
 
 = Setup your environment =
 
-* Make sure to setup your woocommerce permalinks correctly
-* You need to translate woocommerce pages by yourself
-* The plugin will handle the rest for you
+1. Make sure to setup your woocommerce permalinks correctly
+2. You need to translate woocommerce pages by yourself
+3. The plugin will handle the rest for you
 
 = Contributing =
 
@@ -94,10 +92,20 @@ Just make sure to setup your permalinks , and every thing will be fine , I promi
 
 == Screenshots ==
 
-1. Adding and translating products from the same interface you love
-2. Orders can capture the user language 
+1. Add and translate products from the same interface you love
+2. Products meta is synced , no need to do anything by your own
+3. Orders uses the customer chosen language 
+4. Orders language can be changed 
+5. Get reports in specific language and combine reports for all langauges
 
 == Changelog ==
+
+= 0.20 =
+* Added the ability to sync total_sales when stock value is changed
+* Added the ability to combine product report with its translation
+* Added the ability to combine category report with its translation
+* Fixed database error in sales_be_category reports
+* Fixed Orders Interface to use the current user language instead of the order language
 
 = 0.19 =
 * Added the ability to set the write permalinks that can work with polylang if the default woocomerce permalinks are used

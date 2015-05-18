@@ -143,4 +143,18 @@ final class Utilities
         return $IDS;
     }
 
+    /**
+     * Get current url
+     *
+     * Get the full url for current location
+     *
+     * @return string
+     */
+    public static function getCurrentUrl()
+    {
+        return ( is_ssl() ? 'https://' : 'http://' )
+                . $_SERVER['HTTP_HOST']
+                . $_SERVER['REQUEST_URI'];
+    }
+
 }
