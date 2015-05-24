@@ -3,7 +3,7 @@ Contributors: hyyan
 Tags: cms, commerce, e-commerce, e-shop, ecommerce, multilingual, products, shop, woocommerce, polylang ,bilingual, international, language, localization, multilanguage, multilingual, translate, translation
 Requires at least: 3.8
 Tested up to: 4.2
-Stable tag: 0.20
+Stable tag: 0.21
 License: MIT
 License URI: https://github.com/hyyan/woo-poly-integration/blob/master/LICENSE
 
@@ -94,11 +94,20 @@ Just make sure to setup your permalinks , and every thing will be fine , I promi
 
 1. Add and translate products from the same interface you love
 2. Products meta is synced , no need to do anything by your own
-3. Orders uses the customer chosen language 
+3. Orders use the customer chosen language 
 4. Orders language can be changed 
 5. Get reports in specific language and combine reports for all langauges
+6. Control plugin features from its admin page 
 
 == Changelog ==
+
+= 0.21 =
+* Added admin interface to allow user to control plugin features
+* Added link for every attribute to search for its translation in the polylang strings table
+* Added generic fields locker
+* Added POT file for translation
+* Fixed product_type is not synced in 0.20 version
+* General code improvements
 
 = 0.20 =
 * Added the ability to sync total_sales when stock value is changed

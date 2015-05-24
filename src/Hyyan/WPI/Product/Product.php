@@ -8,12 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Hyyan\WPI;
+namespace Hyyan\WPI\Product;
 
-use Hyyan\WPI\Product\Taxonomies,
-    Hyyan\WPI\Product\Meta,
-    Hyyan\WPI\Product\Stock,
-    Hyyan\WPI\Product\Variable;
+use Hyyan\WPI\Admin\Settings;
 
 /**
  * Product
@@ -40,10 +37,12 @@ class Product
         // sync post parent (good for grouped products)
         add_filter('admin_init', array($this, 'syncPostParent'));
 
-        new Taxonomies();
         new Meta();
-        new Stock();
         new Variable();
+
+        if ('on' === Settings::getOption('stock', 'wpi-features', 'on')) {
+            new Stock();
+        }
     }
 
     /**

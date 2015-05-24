@@ -10,6 +10,8 @@
 
 namespace Hyyan\WPI;
 
+use Hyyan\WPI\Admin\Settings;
+
 /**
  * Plugin
  *
@@ -24,9 +26,24 @@ class Plugin
     public function __construct()
     {
         add_action('init', array($this, 'activate'));
+        add_action('plugins_loaded', array($this, 'loadTextDomain'));
 
-        /* Registered anyway */
-        new Emails();
+        if ('on' === Settings::getOption('emails', 'wpi-features', 'on')) {
+            /* Registered anyway */
+            new Emails();
+        }
+    }
+
+    /**
+     * Load plugin langauge file
+     */
+    public function loadTextDomain()
+    {
+        load_plugin_textdomain(
+                'woo-poly-integration'
+                , false
+                , plugin_basename(dirname(Hyyan_WPI_DIR)) . '/languages'
+        );
     }
 
     /**
@@ -90,15 +107,22 @@ class Plugin
      */
     protected function registerCore()
     {
+        new Admin\Settings();
         new Cart();
-        new Coupon();
         new Login();
         new Order();
         new Pages();
-        new Product();
+        new Product\Product();
+        new Taxonomies\Taxonomies();
         new Media();
-        new Reports();
         new Permalinks();
+
+        if ('on' === Settings::getOption('coupons', 'wpi-features', 'on')) {
+            new Coupon();
+        }
+        if ('on' === Settings::getOption('reports', 'wpi-features', 'on')) {
+            new Reports();
+        }
     }
 
 }

@@ -41,6 +41,11 @@ class Variable
                 HooksInterface::PRODUCT_META_SYNC_FILTER
                 , array($this, 'extendProductMetaList')
         );
+        /* Extend selectors list to include variation meta */
+        add_filter(
+                HooksInterface::FIELDS_LOCKER_SELECTORS_FILTER
+                , array($this, 'extendFieldsLockerSelectors')
+        );
 
         if (is_admin()) {
             $this->handleVariableLimitation();
@@ -141,20 +146,44 @@ class Variable
      */
     public function extendProductMetaList(array $metas)
     {
-        return array_merge($metas, array(
-            '_min_variation_price',
-            '_max_variation_price',
-            '_min_price_variation_id',
-            '_max_price_variation_id',
-            '_min_variation_regular_price',
-            '_max_variation_regular_price',
-            '_min_regular_price_variation_id',
-            '_max_regular_price_variation_id',
-            '_min_variation_sale_price',
-            '_max_variation_sale_price',
-            '_min_sale_price_variation_id',
-            '_max_sale_price_variation_id',
-        ));
+
+        $metas['Variables'] = array(
+            'name' => __('Variables Metas', 'woo-poly-integration'),
+            'desc' => __('Variables Metas', 'woo-poly-integration'),
+            'metas' => array(
+                '_min_variation_price',
+                '_max_variation_price',
+                '_min_price_variation_id',
+                '_max_price_variation_id',
+                '_min_variation_regular_price',
+                '_max_variation_regular_price',
+                '_min_regular_price_variation_id',
+                '_max_regular_price_variation_id',
+                '_min_variation_sale_price',
+                '_max_variation_sale_price',
+                '_min_sale_price_variation_id',
+                '_max_sale_price_variation_id',
+            )
+        );
+
+        return $metas;
+    }
+
+    /**
+     * Extend the fields locker selectors
+     *
+     * Extend the fields locker selectors to lock variation fields for translation
+     *
+     * @param array $selectors
+     *
+     * @return array
+     */
+    public function extendFieldsLockerSelectors(array $selectors)
+    {
+
+        $selectors[] = '#variable_product_options :input';
+
+        return $selectors;
     }
 
     /**
@@ -181,18 +210,20 @@ class Variable
         }
 
         add_action('admin_print_scripts', function () {
-            printf(
-                    '<script type="text/javascript" id="woo-poly-variables-data">'
-                    . ' var HYYAN_WPI_VARIABLES = {'
+
+            $jsID = 'variables-data';
+            $code = sprintf(
+                    'var HYYAN_WPI_VARIABLES = {'
                     . '     title       : "%s" ,'
                     . '     content     : "%s" ,'
                     . '     defaultLang : "%s"'
-                    . ' };'
-                    . '</script>'
+                    . '};'
                     , __('Wrong Language For Variable Product', 'woo-poly-integration')
                     , __("Variable product must be created in the default language first or things will get messy. <br> <a href='https://github.com/hyyan/woo-poly-integration/tree/master#what-you-need-to-know-about-this-plugin' target='_blank'>Read more , to know why</a>", "woo-poly-integration")
                     , pll_default_language()
             );
+
+            Utilities::jsScriptWrapper($jsID, $code, false);
         });
 
         add_action('admin_enqueue_scripts', function () {
@@ -216,29 +247,32 @@ class Variable
     public function shouldDisableLangSwitcher()
     {
         add_action('current_screen', function () {
+
             $screen = get_current_screen();
             if ($screen->id !== 'settings_page_mlang') {
                 return false;
             }
+
             $count = wp_count_posts('product_variation');
             if (!($count && $count->publish > 0)) {
                 return false;
             }
+
             add_action('admin_print_scripts', function () {
-                printf(
-                        '<script type="text/javascript" id="woo-poly-disable-lang-switcher">'
-                        . '  jQuery(document).ready(function ($) {'
-                        . '     $("#options-lang #default_lang")'
-                        . '         .css({
-                                        "opacity": .5,
-                                        "pointer-events": "none",
-                                        "cursor": "not-allowed"
-                                    });'
-                        . '     $("#options-lang").prepend("<p class=\'update-nag\'>%s</p>");'
-                        . '  });'
-                        . '</script>'
+
+                $jsID = 'disable-lang-switcher';
+                $code = sprintf(
+                        '$("#options-lang #default_lang")'
+                        . '.css({'
+                        . '     "opacity": .5,'
+                        . '     "pointer-events": "none"'
+                        . '});'
+                        . ' $("#options-lang").prepend('
+                        . '     "<p class=\'update-nag\'>%s</p>"'
+                        . ');'
                         , __('You can not change the default language ,Becuase you are using variable products', 'woo-poly-integration')
                 );
+                Utilities::jsScriptWrapper($jsID, $code);
             }, 100);
         });
     }

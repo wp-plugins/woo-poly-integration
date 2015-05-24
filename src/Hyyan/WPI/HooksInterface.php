@@ -38,6 +38,23 @@ interface HooksInterface
     const PRODUCT_META_SYNC_FILTER = 'woo-poly.product.metaSync';
 
     /**
+     * Fields Locker Selectors Filter
+     *
+     * The filter will be fired when the fields locker builds its selectors list
+     * allowing other plugins to extend this list
+     *
+     * for instance :
+     * <code>
+     * add_filter(HooksInterface::FIELDS_LOCKER_SELECTORS_FILTER,function($selectors=array()) {
+     *
+     *      $selectors[] = '.my_field_to_lock';
+     *
+     *      return $selectors;
+     * });
+     */
+    const FIELDS_LOCKER_SELECTORS_FILTER = 'woo-poly.fieldsLockerSelectors';
+
+    /**
      * Product Sync Category Custom Fields Action
      *
      * The action will be fired when the plugin attemps to sync default product
@@ -103,5 +120,41 @@ interface HooksInterface
      * </code>
      */
     const PAGES_LIST = 'woo-poly.pages.list';
+
+    /**
+     * Settings Sections Filter
+     *
+     * The filter is fired when settings section are being built, to ler other
+     * plugins add their own sections
+     *
+     * for instance :
+     * <code>
+     * add_filter(HooksInterface::SETTINGS_SECTIONS_FILTER,function (array $sections) {
+     *
+     *      // Add your section
+     *
+     *      return $sections;
+     * });
+     * </code>
+     */
+    const SETTINGS_SECTIONS_FILTER = 'woo-poly.settings.sections';
+
+    /**
+     * Settings Fields Filter
+     *
+     * The filter is fired when settings fields are being built, to ler other
+     * plugins add their own fields
+     *
+     * for instance :
+     * <code>
+     * add_filter(HooksInterface::SETTINGS_SECTIONS_FIELDS,function (array $fields) {
+     *
+     *      // Add your fields
+     *
+     *      return $fields;
+     * });
+     * </code>
+     */
+    const SETTINGS_SECTIONS_FIELDS = 'woo-poly.settings.fields';
 
 }
