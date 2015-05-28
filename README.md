@@ -12,6 +12,7 @@ the same interface you love.
 
 ## Features
 
+- [x] Auto Download Woocommerce Translation Files
 - [x] Page Translation
 - [x] Product Translation
   - [x] Categories
@@ -54,6 +55,10 @@ extract it there.
 1. Make sure to setup your woocommerce permalinks correctly
 2. You need to translate woocommerce pages by yourself
 3. The plugin will handle the rest for you
+
+## Translations
+
+* Arabic by [Hyyan Abo Fakher](https://github.com/hyyan)
 
 ## Contributing
 

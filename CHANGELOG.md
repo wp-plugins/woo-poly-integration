@@ -1,3 +1,10 @@
+###0.22
+
+* Added Translation Downloader to auto download woocommerce translation files when a new polylang language is add
+* Added Arabic translation
+* Fixed translation links are hidden in posts page
+* General code improvements
+
 ###0.21
 
 * Added admin interface to allow user to control plugin features

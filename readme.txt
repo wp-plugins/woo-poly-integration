@@ -3,7 +3,7 @@ Contributors: hyyan
 Tags: cms, commerce, e-commerce, e-shop, ecommerce, multilingual, products, shop, woocommerce, polylang ,bilingual, international, language, localization, multilanguage, multilingual, translate, translation
 Requires at least: 3.8
 Tested up to: 4.2
-Stable tag: 0.21
+Stable tag: 0.22
 License: MIT
 License URI: https://github.com/hyyan/woo-poly-integration/blob/master/LICENSE
 
@@ -18,6 +18,7 @@ the same interface you love.
 
 = Features  =
 
+- [√] Auto Download Woocommerce Translation Files
 - [√] Page Translation
 - [√] Product Translation
   - [√] Categories
@@ -48,6 +49,10 @@ the same interface you love.
 1. Make sure to setup your woocommerce permalinks correctly
 2. You need to translate woocommerce pages by yourself
 3. The plugin will handle the rest for you
+
+= Translations =
+
+* Arabic by [Hyyan Abo Fakher](https://github.com/hyyan)
 
 = Contributing =
 
@@ -100,6 +105,12 @@ Just make sure to setup your permalinks , and every thing will be fine , I promi
 6. Control plugin features from its admin page 
 
 == Changelog ==
+
+= 0.22 =
+* Added Translation Downloader to auto download woocommerce translation files when a new polylang language is add
+* Added Arabic translation
+* Fixed translation links are hidden in posts page
+* General code improvements
 
 = 0.21 =
 * Added admin interface to allow user to control plugin features

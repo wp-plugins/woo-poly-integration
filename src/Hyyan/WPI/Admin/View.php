@@ -1,3 +1,8 @@
+<?php
+if (!defined('ABSPATH')) {
+    exit('restricted access');
+}
+?>
 <div class="wrap">
     <h2> <?php _e('WooPoly Advanced Options', 'woo-poly-integration'); ?></h2>
     <div id="poststuff">
@@ -108,7 +113,7 @@
                             )
                             ?>
                         </p>
-                        <ul>
+                        <ol>
                             <li>
                                 <a href="https://github.com/hyyan/woo-poly-integration/issues" target="_blank">
                                     <?php _e('On Github', 'woo-poly-integration'); ?>
@@ -121,10 +126,10 @@
                             </li>
                             <li>
                                 <a href="mailto:tiribthea4hyyan@gmail.com" target="_blank">
-                                    <?php _e('On My Email', 'woo-poly-integration'); ?>
+                                    <?php _e('On Email', 'woo-poly-integration'); ?>
                                 </a>
                             </li>
-                        </ul>
+                        </ol>
                     </div>
                 </div>
             </div>

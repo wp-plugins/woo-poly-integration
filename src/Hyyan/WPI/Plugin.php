@@ -10,8 +10,6 @@
 
 namespace Hyyan\WPI;
 
-use Hyyan\WPI\Admin\Settings;
-
 /**
  * Plugin
  *
@@ -28,10 +26,8 @@ class Plugin
         add_action('init', array($this, 'activate'));
         add_action('plugins_loaded', array($this, 'loadTextDomain'));
 
-        if ('on' === Settings::getOption('emails', 'wpi-features', 'on')) {
-            /* Registered anyway */
-            new Emails();
-        }
+        /* Registered anyway */
+        new Emails();
     }
 
     /**
@@ -116,13 +112,9 @@ class Plugin
         new Taxonomies\Taxonomies();
         new Media();
         new Permalinks();
-
-        if ('on' === Settings::getOption('coupons', 'wpi-features', 'on')) {
-            new Coupon();
-        }
-        if ('on' === Settings::getOption('reports', 'wpi-features', 'on')) {
-            new Reports();
-        }
+        new Language();
+        new Coupon();
+        new Reports();
     }
 
 }
