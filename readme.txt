@@ -3,7 +3,7 @@ Contributors: hyyan
 Tags: cms, commerce, e-commerce, e-shop, ecommerce, multilingual, products, shop, woocommerce, polylang ,bilingual, international, language, localization, multilanguage, multilingual, translate, translation
 Requires at least: 3.8
 Tested up to: 4.2
-Stable tag: 0.23
+Stable tag: 0.24
 License: MIT
 License URI: https://github.com/hyyan/woo-poly-integration/blob/master/LICENSE
 
@@ -20,6 +20,7 @@ the same interface you love.
 
 - [√] Auto Download Woocommerce Translation Files
 - [√] Page Translation
+- [√] Endpoints Translation
 - [√] Product Translation
   - [√] Categories
   - [√] Tags
@@ -39,10 +40,14 @@ the same interface you love.
 
 = What you need to know about this plugin =
 
-1. The plugin support variable products , but using them will `disallow you to 
-  change the default language` , because of the way the plugin implements this
-  support. So you have to make sure to choose the default language before start
-  adding new variable products.
+1. This plugin is developed in sync with [Polylang](https://wordpress.org/plugins/polylang) 
+   and [WooCommerce](https://wordpress.org/plugins/woocommerce/) latest version
+2. The plugin support variable products , but using them will `disallow you to 
+   change the default language` , because of the way the plugin implements this
+   support. So you have to make sure to choose the default language before you start
+   adding new variable products.
+3. Polylang URL modifications method `The language is set from content` is not 
+   supported yet
 
 = Setup your environment =
 
@@ -105,6 +110,15 @@ Just make sure to setup your permalinks , and every thing will be fine , I promi
 6. Control plugin features from its admin page 
 
 == Changelog ==
+
+= 0.24 =
+* Added support for Layered Nav Widget
+* Added support for endpoints translation
+* Fixed products are duplicated when shop page is set as front page
+* Fixed [Unable to open order details after 0.20 upgrade](https://wordpress.org/support/topic/unable-to-open-order-details-after-20-upgrade)
+* Fixed translations links are not hidden in the order page
+* Fixed email is not translated when complete button is used in orders table
+* General code improvements
 
 = 0.23 =
 * Added support for Woocommerce search widget @see [Duplicated search result](https://wordpress.org/support/topic/duplicated-search-result)

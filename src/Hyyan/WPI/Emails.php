@@ -37,8 +37,8 @@ class Emails
      * Correct the locale for orders emails , Othe emails must be handled
      * correctly out of the box
      *
-     * @global type $polylang
-     * @global type $woocommerce
+     * @global \Polylang $polylang
+     * @global \WooCommerce $woocommerce
      *
      * @param string $locale current locale
      *
@@ -52,11 +52,14 @@ class Emails
             return $locale;
         }
 
-        if (!is_admin() || defined('DOING_AJAX')) {
+        $refer = isset($_GET['action']) &&
+                esc_attr($_GET['action'] === 'woocommerce_mark_order_status');
+
+        if (!is_admin() || (defined('DOING_AJAX') && !$refer)) {
             return $locale;
         }
 
-        if ('GET' === filter_input(INPUT_SERVER, 'REQUEST_METHOD')) {
+        if ('GET' === filter_input(INPUT_SERVER, 'REQUEST_METHOD') && !$refer) {
             return $locale;
         }
 
@@ -70,7 +73,7 @@ class Emails
             }
         }
 
-        if ((get_post_type($ID) !== 'shop_order')) {
+        if ((get_post_type($ID) !== 'shop_order') && !$refer) {
             return $locale;
         }
 
@@ -85,7 +88,9 @@ class Emails
                         $entity->locale
                 );
                 $GLOBALS['text_direction'] = $entity->is_rtl ? 'rtl' : 'ltr';
-                $GLOBALS['wp_locale'] = new \WP_Locale();
+                if (class_exists('WP_Locale')) {
+                    $GLOBALS['wp_locale'] = new \WP_Locale();
+                }
 
                 return $entity->locale;
             }
